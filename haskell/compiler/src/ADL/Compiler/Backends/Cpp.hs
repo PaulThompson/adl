@@ -652,7 +652,7 @@ generateDecl dn d@(Decl{d_type=(Decl_Union u)}) = do
       wt "static void *copy( DiscType d, void *v );" [ctnameP]
     wl "};"
 
-    declareOperators ifile (u_typeParams u) ctnameP
+    -- declareOperators ifile (u_typeParams u) ctnameP
 
   write ifile $ do
     wl ""
@@ -918,11 +918,11 @@ generateDecl dn d@(Decl{d_type=(Decl_Newtype nt)}) = do
        wt "explicit $1(const $2 & v) : value(v) {}" [ctname,t]
        wl ""
        wt "$1 value;" [t]
-    wl ""
-    genTemplateI tparams
-    wt "bool operator<( const $1 &a, const $1 &b ) { return a.value < b.value; }" [ctnameP]
-    genTemplateI tparams
-    wt "bool operator==( const $1 &a, const $1 &b ) { return a.value == b.value; }" [ctnameP]
+    --wl ""
+    --genTemplateI tparams
+    --wt "bool operator<( const $1 &a, const $1 &b ) { return a.value < b.value; }" [ctnameP]
+    --genTemplateI tparams
+    --wt "bool operator==( const $1 &a, const $1 &b ) { return a.value == b.value; }" [ctnameP]
 
   write ifileS $ do
     wl ""
