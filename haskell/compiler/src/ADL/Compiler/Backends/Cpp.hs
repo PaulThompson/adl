@@ -487,6 +487,7 @@ generateDecl dn d@(Decl{d_type=(Decl_Struct s)}) = do
   -- Class Declaration
   write ifile $ do
     wl ""
+    wt "// struct definition for $1" [ctname]
     genTemplate (s_typeParams s)
     wt "struct $1" [ctname]
     dblock $ do
@@ -609,6 +610,7 @@ generateDecl dn d@(Decl{d_type=(Decl_Union u)}) = do
   write ifile $ do
     -- The class declaration
     wl ""
+    wt "// union class decl $1" [ctname]
     genTemplate (u_typeParams u)
     wt "class $1" [ctname]
     wl "{"
@@ -907,7 +909,7 @@ generateDecl dn d@(Decl{d_type=(Decl_Newtype nt)}) = do
       ctnameP1 = template "$1::$2" [formatText ns,ctnameP]
 
   write ifile $ do
-    wl ""
+    wl "// this xxxxx"
     genTemplate tparams
     wt "struct $1" [ctname]
     dblock $ do
