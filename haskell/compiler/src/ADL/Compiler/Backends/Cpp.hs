@@ -922,7 +922,7 @@ generateDecl dn d@(Decl{d_type=(Decl_Newtype nt)}) = do
       ctnameP1 = template "$1::$2" [formatText ns,ctnameP]
 
   write ifile $ do
-    wl "// definition for Void equivalent types"
+    wl "// definition for newtypes"
     genTemplate tparams
     wt "struct $1" [ctname]
     dblock $ do
