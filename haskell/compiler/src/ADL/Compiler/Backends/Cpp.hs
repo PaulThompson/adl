@@ -653,7 +653,10 @@ generateDecl dn d@(Decl{d_type=(Decl_Union u)}) = do
       wl "switch (d())"
       cblock $
         forM_ fds $ \fd -> do
+          when (not $ fd_isVoidType fd) $
             wt "case $1: { vis($2(), std::integral_constant<DiscType, $1>()); break;}" [fd_unionDiscName fd, fd_unionAccessorName fd]
+          when (fd_isVoidType fd) $
+            wt "case $1: { vis(std::integral_constant<DiscType, $1>()); break;}" [fd_unionDiscName fd]
       wl "}"
       wl ""
       forM_ fds $ \fd -> do
