@@ -1224,7 +1224,7 @@ literalLValue (Literal te (LCtor ls)) = do
 literalLValue (Literal te (LUnion ctor l)) = do
   t <- cTypeExpr False te
   lit <-  literalLValue l
-  return (template "$1::$2($3)" [t,cUnionConstructorName ctor,lit])
+  return (template "$1::$2($3) /* check union defaults fix Void() */" [t,cUnionConstructorName ctor,lit])
 literalLValue (Literal (TypeExpr _ [te]) (LVector ls)) = do
   t <- cTypeExpr False te
   lits <- mapM literalLValue ls
